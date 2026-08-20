@@ -1,0 +1,19 @@
+
+==================================================
+           CARPINTERÍA 4 HERMANOS
+        COMPROBANTE DE PEDIDO Y PRESUPUESTO
+==================================================
+Fecha de Emisión: 2026-08-19
+Nº de Pedido: #2
+Cliente: alexei
+--------------------------------------------------
+Descripción del Mueble / Trabajo:
+ -> ropero de 2
+
+Estado Actual del Trabajo: Completado ✅
+--------------------------------------------------
+TOTAL COMPROMETIDO: $950000.00
+==================================================
+ ¡Gracias por confiar en Carpintería 4 Hermanos!
+==================================================
+        
