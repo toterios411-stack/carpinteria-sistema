@@ -2,7 +2,7 @@ from datetime import datetime
 import os
 import sqlite3
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox, simpledialog, ttk
 import urllib.parse
 import webbrowser
 
@@ -28,7 +28,7 @@ def validar_login():
 
     if usuario_ingresado == "admin" and password_ingresada == password_correcta:
         ventana_login.destroy()
-        root.deiconify()  # Muestra el sistema principal al autenticar
+        root.deiconify()  # Muestra la ventana principal
     else:
         messagebox.showerror(
             "Error de Acceso", "Usuario o contraseña incorrectos"
@@ -116,7 +116,7 @@ class AplicacionCarpinteria:
         self.notebook.add(self.tab_pedidos, text="  📦 Pedidos  ")
 
         self.tab_reportes = ttk.Frame(self.notebook, padding=10)
-        self.notebook.add(self.tab_reportes, text="  📊 Reportes  ")
+        self.notebook.add(self.tab_reportes, text="  📊 Reportes y Ajustes  ")
 
         self.crear_interfaz_clientes()
         self.crear_interfaz_materiales()
@@ -836,41 +836,71 @@ TOTAL COMPROMETIDO: {precio}
         url_whatsapp = f"https://api.whatsapp.com/send?phone={telefono_limpio}&text={mensaje_encoded}"
         webbrowser.open(url_whatsapp)
 
-    # ================= REPORTES =================
+    # ================= REPORTES Y AJUSTES =================
     def crear_interfaz_reportes(self):
         frame_rep = ttk.LabelFrame(
-            self.tab_reportes, text=" Métrica General del Negocio ", padding=30
+            self.tab_reportes, text=" Métrica General del Negocio ", padding=20
         )
         frame_rep.pack(fill="both", expand=True, padx=20, pady=20)
 
         self.lbl_rep_clientes = ttk.Label(
             frame_rep, text="👥 Clientes Registrados: 0", font=("Segoe UI", 12)
         )
-        self.lbl_rep_clientes.pack(anchor="w", pady=10)
+        self.lbl_rep_clientes.pack(anchor="w", pady=5)
 
         self.lbl_rep_pedidos = ttk.Label(
             frame_rep, text="📦 Pedidos Realizados: 0", font=("Segoe UI", 12)
         )
-        self.lbl_rep_pedidos.pack(anchor="w", pady=10)
+        self.lbl_rep_pedidos.pack(anchor="w", pady=5)
 
         self.lbl_rep_materiales = ttk.Label(
             frame_rep, text="🛠️ Tipos de Insumos: 0", font=("Segoe UI", 12)
         )
-        self.lbl_rep_materiales.pack(anchor="w", pady=10)
+        self.lbl_rep_materiales.pack(anchor="w", pady=5)
 
         self.lbl_rep_ingresos = ttk.Label(
             frame_rep,
             text="💰 Ingresos Totales: $0.00",
-            font=("Segoe UI", 16, "bold"),
+            font=("Segoe UI", 15, "bold"),
             foreground="#ffd166",
         )
-        self.lbl_rep_ingresos.pack(anchor="w", pady=20)
+        self.lbl_rep_ingresos.pack(anchor="w", pady=15)
+
+        frame_botones = ttk.Frame(frame_rep)
+        frame_botones.pack(anchor="w", pady=10)
 
         ttk.Button(
-            frame_rep,
+            frame_botones,
             text="🔄 Actualizar Reporte",
             command=self.actualizar_reportes,
-        ).pack(anchor="w", pady=10)
+        ).pack(side="left", padx=(0, 10))
+
+        ttk.Button(
+            frame_botones,
+            text="🔑 Cambiar Contraseña del Sistema",
+            command=self.cambiar_password_gui,
+        ).pack(side="left")
+
+    def cambiar_password_gui(self):
+        nueva_clave = simpledialog.askstring(
+            "Cambiar Contraseña",
+            "Ingresa la nueva contraseña para el sistema:",
+            show="*",
+        )
+        if nueva_clave is not None:
+            nueva_clave = nueva_clave.strip()
+            if nueva_clave:
+                with open("config.txt", "w", encoding="utf-8") as f:
+                    f.write(nueva_clave)
+                messagebox.showinfo(
+                    "Éxito",
+                    "La contraseña se ha actualizado correctamente.\nÚsala la"
+                    " próxima vez que inicies sesión.",
+                )
+            else:
+                messagebox.showwarning(
+                    "Atención", "La contraseña no puede estar vacía."
+                )
 
     def actualizar_reportes(self):
         conexion = conectar()
@@ -904,7 +934,7 @@ TOTAL COMPROMETIDO: {precio}
 # ARRANQUE Y CONTROL DE LOGIN
 # ==========================================
 if __name__ == "__main__":
-    # 1. Ventana Principal (se oculta al inicio)
+    # 1. Ventana Principal (oculta al inicio)
     root = tk.Tk()
     root.withdraw()
     app = AplicacionCarpinteria(root)
