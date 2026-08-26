@@ -1,9 +1,101 @@
 import tkinter as tk
+from tkinter import messagebox
 from tkinter import ttk, messagebox
 import sqlite3
 from datetime import datetime
 import webbrowser
 import urllib.parse
+
+# ==========================================
+# VENTANA DE LOGIN
+# ==========================================
+# ==========================================
+# VENTANA DE LOGIN (Estilo Carpintería)
+# ==========================================
+def validar_login():
+    if entry_usuario.get() == "admin" and entry_password.get() == "1234":
+        ventana_login.destroy()
+        root.deiconify()  # Muestra el sistema principal
+    else:
+        messagebox.showerror(
+            "Error de Acceso", "Usuario o contraseña incorrectos"
+        )
+
+
+ventana_login = tk.Tk()
+ventana_login.title("Acceso al Sistema - Carpintería")
+ventana_login.geometry("360x280")
+ventana_login.resizable(False, False)
+ventana_login.config(bg="#2C1D11")  # Fondo marrón oscuro (Madera)
+
+# Título Principal
+lbl_titulo = tk.Label(
+    ventana_login,
+    text="🪚 SISTEMA CARPINTERÍA 🪓",
+    font=("Segoe UI", 12, "bold"),
+    bg="#2C1D11",
+    fg="#D4AC0D",  # Texto dorado
+)
+lbl_titulo.pack(pady=15)
+
+# Marco contenedor central
+frame_campos = tk.Frame(ventana_login, bg="#3E2723", padx=20, pady=15)
+frame_campos.pack(padx=20, pady=5)
+
+# Campo Usuario
+lbl_usuario = tk.Label(
+    frame_campos,
+    text="Usuario:",
+    font=("Arial", 10, "bold"),
+    bg="#3E2723",
+    fg="#F5EEE8",
+)
+lbl_usuario.pack(anchor="w")
+entry_usuario = tk.Entry(
+    frame_campos,
+    width=25,
+    font=("Arial", 10),
+    bg="#F5EEE8",
+    relief="flat",
+)
+entry_usuario.pack(pady=(2, 10))
+
+# Campo Contraseña
+lbl_password = tk.Label(
+    frame_campos,
+    text="Contraseña:",
+    font=("Arial", 10, "bold"),
+    bg="#3E2723",
+    fg="#F5EEE8",
+)
+lbl_password.pack(anchor="w")
+entry_password = tk.Entry(
+    frame_campos,
+    show="*",
+    width=25,
+    font=("Arial", 10),
+    bg="#F5EEE8",
+    relief="flat",
+)
+entry_password.pack(pady=(2, 5))
+
+# Botón Ingresar
+btn_ingresar = tk.Button(
+    ventana_login,
+    text="Ingresar",
+    command=validar_login,
+    bg="#8D6E63",  # Color madera clara
+    fg="white",
+    font=("Arial", 10, "bold"),
+    width=14,
+    activebackground="#6D4C41",
+    activeforeground="white",
+    relief="flat",
+    cursor="hand2",
+)
+btn_ingresar.pack(pady=15)
+
+ventana_login.mainloop()
 
 # --- BASE DE DATOS ---
 def conectar():

@@ -1,0 +1,19 @@
+
+==================================================
+           CARPINTERÍA 4 HERMANOS
+        COMPROBANTE DE PEDIDO Y PRESUPUESTO
+==================================================
+Fecha de Emisión: 2026-08-19
+Nº de Pedido: #4
+Cliente: katia
+--------------------------------------------------
+Descripción del Mueble / Trabajo:
+ -> un beso
+
+Estado Actual del Trabajo: Completado ✅
+--------------------------------------------------
+TOTAL COMPROMETIDO: $10000.00
+==================================================
+ ¡Gracias por confiar en Carpintería 4 Hermanos!
+==================================================
+        

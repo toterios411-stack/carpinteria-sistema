@@ -1,0 +1,19 @@
+
+==================================================
+           CARPINTERÍA 4 HERMANOS
+        COMPROBANTE DE PEDIDO Y PRESUPUESTO
+==================================================
+Fecha de Emisión: 2026-08-19
+Nº de Pedido: #3
+Cliente: nico putito
+--------------------------------------------------
+Descripción del Mueble / Trabajo:
+ -> mesa de 5 sillas
+
+Estado Actual del Trabajo: Completado ✅
+--------------------------------------------------
+TOTAL COMPROMETIDO: $1200000.00
+==================================================
+ ¡Gracias por confiar en Carpintería 4 Hermanos!
+==================================================
+        
